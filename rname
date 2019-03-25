@@ -1,0 +1,51 @@
+#!/usr/bin/env node 
+
+// "old school" way to do default values
+// if process.argv[2] does not exist then it will be a falsify value (because it is undefinded) and thus 1000 will be used
+// but if it is truthy then the right-side of the || operator will not evaluate and simple the left-side of || will have it's value assigned
+// console.log(process.argv);
+let SEED = process.argv[2] || 1000;
+
+let students = [
+  'Mike',
+  'Ed',
+  'Felipe',
+  'Jeff',
+  'Conor',
+  'Chloie',
+  'Tia',
+  'Mark',
+  'Matt',
+];
+
+// FUNctions
+let getWinner = function(){
+  return Math.floor(Math.random() * students.length);
+};
+
+// Where all results will be stored
+let result = {};
+
+for(var i = 0; i < students.length; i++){
+  result[students[i]] = 0;
+}
+
+// { Mike: 0, Ed: 0, ...}
+
+for(i = 0; i < SEED; i++){
+  var randomStudent = getWinner();
+  result[students[randomStudent]] += 1;
+}
+
+let nWins = -1;
+let winner = '';
+
+for(var student in result){
+  if(result[student] > nWins){
+    nWins = result[student];
+    winner = student;
+  }
+}
+
+console.log(`${winner.toUpperCase()} - ${result[winner]}\n`);
+console.log(result);

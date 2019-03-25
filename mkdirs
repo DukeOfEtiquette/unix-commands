@@ -1,0 +1,32 @@
+#!/usr/bin/env node 
+
+var fs = require('fs');
+
+if(process.argv.length !== 5){
+  console.error('USAGE ERROR: mkdirs <dir_path> <first_num> <last_num>');
+  return 1;
+}
+
+let dirNames = process.argv[2];
+let first = parseInt(process.argv[3]);
+let last = parseInt(process.argv[4]);
+
+/*
+console.log('dirNames:', dirNames);
+console.log('first:', first);
+console.log('last:', last);
+console.log('Successful usage');
+*/
+
+for(let i = first; i <= last; i++){
+  let dir = '';
+
+  if(i < 10){
+    dir = `${dirNames}0${i}`;
+  }else{
+    dir = `${dirNames}${i}`;
+  }
+
+  console.log(`Creating ${dir}`);
+  fs.mkdirSync(dir);
+}
