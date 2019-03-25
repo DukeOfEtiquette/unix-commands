@@ -11,13 +11,6 @@ let dirNames = process.argv[2];
 let first = parseInt(process.argv[3]);
 let last = parseInt(process.argv[4]);
 
-/*
-console.log('dirNames:', dirNames);
-console.log('first:', first);
-console.log('last:', last);
-console.log('Successful usage');
-*/
-
 for(let i = first; i <= last; i++){
   let dir = '';
 
